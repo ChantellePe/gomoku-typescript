@@ -1,0 +1,36 @@
+.square {
+    height: 2rem;
+    width: 2rem;
+    border: 5px solid red;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.square.selected {
+    background-color: #16437E;
+}
+
+.square.available {
+    background-color: white;
+}
+
+.square.occupied {
+    background-color: black;
+    cursor: not-allowed;
+}
+
+.row {
+    display: flex;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+
+}
+
+header {
+    color: red;
+
+
+}
