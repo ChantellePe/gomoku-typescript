@@ -1,4 +1,8 @@
+import Player from './Player'
 import Row from './row'
+import { playerone, playertwo } from './Player'
+
+
 
 export default class Grid {
     rows: Row[]
@@ -18,8 +22,13 @@ export default class Grid {
     }
 
 
+
+
 }
 
-const grid1 = new Grid(5, 5)
+const grid1 = new Grid(10, 10)
 
-document.getElementById("main")?.appendChild(grid1.element)                   
+document.getElementById("main")?.appendChild(grid1.element)
+playerone.displayCurrentPlayer();
+
+

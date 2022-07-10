@@ -1,13 +1,19 @@
 .square {
     height: 2rem;
     width: 2rem;
-    border: 5px solid red;
+    border: 3px solid blueviolet;
     box-sizing: border-box;
     cursor: pointer;
 }
 
-.square.selected {
-    background-color: #16437E;
+.selected {}
+
+.playerone {
+    background-color: pink;
+}
+
+.playertwo {
+    background-color: gold;
 }
 
 .square.available {
@@ -15,7 +21,6 @@
 }
 
 .square.occupied {
-    background-color: black;
     cursor: not-allowed;
 }
 
@@ -26,6 +31,7 @@
 .grid {
     display: flex;
     flex-direction: column;
+
 
 }
 
