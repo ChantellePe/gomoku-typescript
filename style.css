@@ -1,29 +1,33 @@
 .square {
     height: 2rem;
     width: 2rem;
-    border: 3px solid blueviolet;
+    border: 2px solid purple;
     box-sizing: border-box;
     cursor: pointer;
 }
 
 #playerTurn {
-    color: green;
-    font-size: 1.2rem;
+    color: rgb(49, 2, 49);
+    font-size: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 20px;
 }
 
 
 .playerone {
-    background-color: pink;
+    background-color: black;
 }
 
 .playertwo {
-    background-color: gold;
+    background-color: white;
 }
 
 .square.available {
-    background-color: white;
+    background-color: palevioletred;
+    opacity: 80%;
 }
 
 .square.occupied {
@@ -42,12 +46,17 @@
 
 .grid {
     display: flex;
+    align-items: center;
     flex-direction: column;
 
 }
 
 header {
-    color: red;
+    color: purple;
+    text-align: center;
+    font-size: 4rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
 }
 
 .reset {

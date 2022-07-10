@@ -130,10 +130,10 @@ class app {
         return false;
     }
     fiveConseq(player) {
-        const array = player.squaresDeclared.sort();
+        const array = player.squaresDeclared;
         for (let idx = 0; idx < array.length; idx++) {
             if (array.includes(array[idx] + 1) && array.includes(array[idx] + 2) && array.includes(array[idx] + 3) && array.includes(array[idx] + 4)) {
-                let newArray = [array[idx], array[idx] + 1, array[idx] + 2, array[idx] + 3, array[idx] + 4];
+                //let newArray = [array[idx], array[idx] + 1, array[idx] + 2, array[idx] + 3, array[idx] + 4]
                 return true;
             }
         }
