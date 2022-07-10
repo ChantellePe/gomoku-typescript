@@ -1,6 +1,8 @@
 
 import Player from './Player'
-import { playerone, playertwo } from './Player'
+import App from './app'
+
+
 
 enum STATUS {
     AVAILABLE = 'AVAILABLE',
@@ -9,12 +11,10 @@ enum STATUS {
 }
 
 
-
 export default class Square {
     id: number
     status: STATUS
     element: HTMLDivElement
-
 
 
 
@@ -31,19 +31,14 @@ export default class Square {
 
     }
 
-
     handleClick() {
         this.element.classList.remove('available');
-        if (playerone.isCurrentPlayer()) {
-            this.element.classList.add('playerone');
-            playerone.nextPlayer(playertwo);
-
-        } else {
-            this.element.classList.add('playertwo');
-            playertwo.nextPlayer(playerone);
-        }
+        this.element.classList.add('occupied');
 
     }
+
+
+
 
     get isSelected(): boolean {
         return this.status === STATUS.SELECTED

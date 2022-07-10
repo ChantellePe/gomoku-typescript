@@ -1,13 +1,15 @@
 import Player from './Player'
 import Row from './row'
-import { playerone, playertwo } from './Player'
+
+
 
 
 
 export default class Grid {
     rows: Row[]
-    selectedSeats: number[] = []
+    selectedSquares: number[] = []
     element: HTMLDivElement
+
 
     constructor(
         rowNumber: number,
@@ -19,16 +21,10 @@ export default class Grid {
         this.element = document.createElement('div')
         this.element.classList.add('grid')
         this.element.append(...this.rows.map((row) => row.element))
+
     }
-
-
-
 
 }
 
-const grid1 = new Grid(10, 10)
-
-document.getElementById("main")?.appendChild(grid1.element)
-playerone.displayCurrentPlayer();
 
 

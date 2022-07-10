@@ -1,13 +1,17 @@
+import Grid from './grid'
+import Square from './Square'
 
 export default class Player {
     playerId: number
     isTurn: Boolean
+    squaresDeclared: number[];
 
 
 
     constructor(playerId: number, isTurn: boolean = false) {
         this.playerId = playerId
         this.isTurn = isTurn
+        this.squaresDeclared = []
 
     }
 
@@ -21,17 +25,6 @@ export default class Player {
 
     }
 
-    nextPlayer(Player: Player) {
-        if (this.isCurrentPlayer()) {
-            const text = "Player " + this.playerId + 's turn';
-            this.isTurn = false;
-            Player.isTurn = true;
-            Player.displayCurrentPlayer();
-        }
-
-        console.log(Player)
-
-    }
 
     displayCurrentPlayer(): void {
         document.getElementById('playerTurn')?.remove()
@@ -40,8 +33,10 @@ export default class Player {
         const textNode = document.createTextNode("Player " + this.playerId + "\'s turn");
         element.appendChild(textNode);
         document.getElementById("main")?.appendChild(element)
+
     }
+
+
+
 }
 
-export const playerone = new Player(1, true);
-export const playertwo = new Player(2);
