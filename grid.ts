@@ -22,6 +22,12 @@ export default class Grid {
         this.element.classList.add('grid')
         this.element.append(...this.rows.map((row) => row.element))
 
+        const textNode = document.createTextNode("Welcome to Gomoku! It's Player 1's turn");
+        const element = document.createElement('div')
+        element.setAttribute('id', 'playerTurn');
+        element.appendChild(textNode)
+        document.getElementById('main')?.appendChild(element)
+
     }
 
 }

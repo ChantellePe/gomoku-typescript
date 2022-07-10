@@ -30,9 +30,9 @@ export default class Player {
         document.getElementById('playerTurn')?.remove()
         const element = document.createElement('div')
         element.setAttribute('id', 'playerTurn')
-        const textNode = document.createTextNode("Player " + this.playerId + "\'s turn");
+        const textNode = document.createTextNode("Now it's Player " + this.playerId + "\'s turn");
         element.appendChild(textNode);
-        document.getElementById("main")?.appendChild(element)
+        document.getElementById("header")?.appendChild(element)
 
     }
 

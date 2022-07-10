@@ -6,6 +6,13 @@
     cursor: pointer;
 }
 
+#playerTurn {
+    color: green;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: row;
+}
+
 
 .playerone {
     background-color: pink;
@@ -24,6 +31,11 @@
     pointer-events: none;
 }
 
+.gameOver {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 .row {
     display: flex;
 }
@@ -32,16 +44,14 @@
     display: flex;
     flex-direction: column;
 
-
 }
 
 header {
     color: red;
-
-
 }
 
 .reset {
+    pointer-events: all;
     margin-top: 20px;
     width: 60px;
     color: black;

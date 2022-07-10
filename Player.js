@@ -17,9 +17,9 @@ class Player {
         (_a = document.getElementById('playerTurn')) === null || _a === void 0 ? void 0 : _a.remove();
         const element = document.createElement('div');
         element.setAttribute('id', 'playerTurn');
-        const textNode = document.createTextNode("Player " + this.playerId + "\'s turn");
+        const textNode = document.createTextNode("Now it's Player " + this.playerId + "\'s turn");
         element.appendChild(textNode);
-        (_b = document.getElementById("main")) === null || _b === void 0 ? void 0 : _b.appendChild(element);
+        (_b = document.getElementById("header")) === null || _b === void 0 ? void 0 : _b.appendChild(element);
     }
 }
 exports.default = Player;
