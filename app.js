@@ -62,17 +62,22 @@ class app {
         }
     }
     nextPlayer() {
+        var _a, _b, _c, _d;
         if (this.player1.isCurrentPlayer()) {
             const text = "Player " + this.player2.playerId + 's turn';
             this.player1.isTurn = false;
             this.player2.isTurn = true;
             this.player2.displayCurrentPlayer();
+            (_a = document.getElementById("playerTurn")) === null || _a === void 0 ? void 0 : _a.classList.remove("player1Header");
+            (_b = document.getElementById("playerTurn")) === null || _b === void 0 ? void 0 : _b.classList.add("player2Header");
         }
         else {
             const text = "Player " + this.player1.playerId + 's turn';
             this.player2.isTurn = false;
             this.player1.isTurn = true;
             this.player1.displayCurrentPlayer();
+            (_c = document.getElementById("playerTurn")) === null || _c === void 0 ? void 0 : _c.classList.remove("player2Header");
+            (_d = document.getElementById("playerTurn")) === null || _d === void 0 ? void 0 : _d.classList.add("player1Header");
         }
     }
     displayWinner(message) {
@@ -90,92 +95,89 @@ class app {
             this.displayWinner("Its a TIE!");
             return true;
         }
-        else if (this.fiveConseq(this.player1)) {
-            this.displayWinner("Player 1 WINS!");
-            return true;
+        else {
+            const p1Array = this.create2dArray(this.player1);
+            const p2Array = this.create2dArray(this.player2);
+            if (this.fiveConseq(this.player1, p1Array)) {
+                this.displayWinner("Player 1 WINS!");
+                return true;
+            }
+            else if (this.fiveConseq(this.player2, p2Array)) {
+                this.displayWinner("Player 2 WINS!");
+                return true;
+            }
+            else if (this.fiveDown(this.player2, p2Array)) {
+                this.displayWinner("Player 2 WINS!");
+                return true;
+            }
+            else if (this.fiveDown(this.player1, p1Array)) {
+                this.displayWinner("Player 1 WINS!");
+                return true;
+            }
+            else if (this.diagLeft(this.player2, p2Array)) {
+                this.displayWinner("Player 2 WINS!");
+                return true;
+            }
+            else if (this.diagLeft(this.player1, p1Array)) {
+                this.displayWinner("Player 1 WINS!");
+                return true;
+            }
+            else if (this.diagRight(this.player2, p2Array)) {
+                this.displayWinner("Player 2 WINS!");
+                return true;
+            }
+            else if (this.diagRight(this.player1, p1Array)) {
+                this.displayWinner("Player 1 WINS!");
+                return true;
+            }
         }
-        else if (this.fiveConseq(this.player2)) {
-            this.displayWinner("Player 2 WINS!");
-            return true;
-        }
-        else if (this.fiveDown(this.player2)) {
-            this.displayWinner("Player 2 WINS!");
-            return true;
-        }
-        else if (this.fiveDown(this.player1)) {
-            this.displayWinner("Player 1 WINS!");
-            return true;
-        }
-        else if (this.diagLeft(this.player2)) {
-            this.displayWinner("Player 2 WINS!");
-            return true;
-        }
-        else if (this.diagLeft(this.player1)) {
-            this.displayWinner("Player 1 WINS!");
-            return true;
-        }
-        else if (this.diagRight(this.player2)) {
-            this.displayWinner("Player 2 WINS!");
-            return true;
-        }
-        else if (this.diagRight(this.player1)) {
-            this.displayWinner("Player 1 WINS!");
-            return true;
-        }
+        return false;
     }
     static exists(arr, search) {
         return arr.some(row => JSON.stringify(row) === JSON.stringify(search));
     }
-    fiveConseq(player) {
+    create2dArray(player) {
         const array = player.squaresDeclared;
         let squareIds = [];
         array.forEach((square) => {
             squareIds.push([square.id, square.rowId]);
         });
-        for (let idx = 0; idx < array.length; idx++) {
+        return squareIds;
+    }
+    fiveConseq(player, squareIds) {
+        for (let idx = 0; idx < squareIds.length; idx++) {
             if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 1, squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 2, squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 3, squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 4, squareIds[idx][1]])) {
                 return true;
             }
         }
+        return false;
     }
-    fiveDown(player) {
+    fiveDown(player, squareIds) {
         const number = this.grid.rows.length;
-        const array = player.squaresDeclared;
-        let squareIds = [];
-        array.forEach((square) => {
-            squareIds.push([square.id, square.rowId]);
-        });
-        for (let idx = 0; idx < array.length; idx++) {
+        for (let idx = 0; idx < squareIds.length; idx++) {
             if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && app.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && app.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && app.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
                 return true;
             }
         }
+        return false;
     }
-    diagLeft(player) {
+    diagLeft(player, squareIds) {
         const number = this.grid.rows.length - 1;
-        const array = player.squaresDeclared;
-        let squareIds = [];
-        array.forEach((square) => {
-            squareIds.push([square.id, square.rowId]);
-        });
-        for (let idx = 0; idx < array.length; idx++) {
+        for (let idx = 0; idx < squareIds.length; idx++) {
             if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && app.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && app.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && app.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
                 return true;
             }
         }
+        return false;
     }
-    diagRight(player) {
+    diagRight(player, squareIds) {
         const number = this.grid.rows.length + 1;
-        const array = player.squaresDeclared;
-        let squareIds = [];
-        array.forEach((square) => {
-            squareIds.push([square.id, square.rowId]);
-        });
-        for (let idx = 0; idx < array.length; idx++) {
+        for (let idx = 0; idx < squareIds.length; idx++) {
             if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && app.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && app.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && app.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
                 return true;
             }
         }
+        return false;
     }
 }
 exports.default = app;

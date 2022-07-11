@@ -15,8 +15,5 @@ class Row {
         this.element.classList.add('row');
         this.element.append(...this.squares.map((square) => square.element));
     }
-    get selectedSquaresId() {
-        return this.squares.filter((squares) => squares.isSelected).map((squares) => squares.id);
-    }
 }
 exports.default = Row;

@@ -24,8 +24,6 @@ export default class Player {
 
 
     }
-
-
     displayCurrentPlayer(): void {
         document.getElementById('playerTurn')?.remove()
         const element = document.createElement('div')

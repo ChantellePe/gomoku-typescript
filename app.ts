@@ -37,7 +37,7 @@ export default class app {
     }
 
 
-    clearGrid() {
+    clearGrid(): void {
         this.grid.element.classList.remove('gameOver')
         this.player1.squaresDeclared = [];
         this.player2.squaresDeclared = [];
@@ -82,12 +82,15 @@ export default class app {
             this.player1.isTurn = false;
             this.player2.isTurn = true;
             this.player2.displayCurrentPlayer();
+            document.getElementById("playerTurn")?.classList.remove("player1Header")
+            document.getElementById("playerTurn")?.classList.add("player2Header")
         } else {
             const text = "Player " + this.player1.playerId + 's turn';
             this.player2.isTurn = false;
             this.player1.isTurn = true;
             this.player1.displayCurrentPlayer();
-
+            document.getElementById("playerTurn")?.classList.remove("player2Header")
+            document.getElementById("playerTurn")?.classList.add("player1Header")
         }
     }
 
@@ -101,96 +104,94 @@ export default class app {
         this.grid.element.classList.add('gameOver')
     }
 
-    declareWinner() {
+    declareWinner(): boolean {
         if (this.player1.squaresDeclared.length + this.player2.squaresDeclared.length === this.grid.rows.length ** 2) {
             this.displayWinner("Its a TIE!");
             return true;
-        } else if (this.fiveConseq(this.player1)) {
-            this.displayWinner("Player 1 WINS!");
-            return true;
-        } else if (this.fiveConseq(this.player2)) {
-            this.displayWinner("Player 2 WINS!");
-            return true;
-        } else if (this.fiveDown(this.player2)) {
-            this.displayWinner("Player 2 WINS!");
-            return true;
-        } else if (this.fiveDown(this.player1)) {
-            this.displayWinner("Player 1 WINS!");
-            return true;
-        } else if (this.diagLeft(this.player2)) {
-            this.displayWinner("Player 2 WINS!");
-            return true;
-        } else if (this.diagLeft(this.player1)) {
-            this.displayWinner("Player 1 WINS!");
-            return true;
-        } else if (this.diagRight(this.player2)) {
-            this.displayWinner("Player 2 WINS!");
-            return true;
-        } else if (this.diagRight(this.player1)) {
-            this.displayWinner("Player 1 WINS!");
-            return true;
-        }
+        } else {
+            const p1Array: number[][] = this.create2dArray(this.player1)
+            const p2Array: number[][] = this.create2dArray(this.player2)
+            if (this.fiveConseq(this.player1, p1Array)) {
+                this.displayWinner("Player 1 WINS!");
+                return true;
+            } else if (this.fiveConseq(this.player2, p2Array)) {
+                this.displayWinner("Player 2 WINS!");
+                return true;
+            } else if (this.fiveDown(this.player2, p2Array)) {
+                this.displayWinner("Player 2 WINS!");
+                return true;
+            } else if (this.fiveDown(this.player1, p1Array)) {
+                this.displayWinner("Player 1 WINS!");
+                return true;
+            } else if (this.diagLeft(this.player2, p2Array)) {
+                this.displayWinner("Player 2 WINS!");
+                return true;
+            } else if (this.diagLeft(this.player1, p1Array)) {
+                this.displayWinner("Player 1 WINS!");
+                return true;
+            } else if (this.diagRight(this.player2, p2Array)) {
+                this.displayWinner("Player 2 WINS!");
+                return true;
+            } else if (this.diagRight(this.player1, p1Array)) {
+                this.displayWinner("Player 1 WINS!");
+                return true;
+            }
 
+        }
+        return false
     }
 
-    static exists(arr: number[][], search: number[]) {
+    static exists(arr: number[][], search: number[]): boolean {
         return arr.some(row => JSON.stringify(row) === JSON.stringify(search));
     }
 
-
-    fiveConseq(player: Player) {
+    create2dArray(player: Player): number[][] {
         const array = player.squaresDeclared;
         let squareIds: number[][] = []
         array.forEach((square) => {
             squareIds.push([square.id, square.rowId])
         })
-        for (let idx = 0; idx < array.length; idx++) {
+        return squareIds
+    }
+
+
+    fiveConseq(player: Player, squareIds: number[][]): boolean {
+        for (let idx = 0; idx < squareIds.length; idx++) {
             if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 1, squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 2, squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 3, squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 4, squareIds[idx][1]])) {
                 return true
             }
         }
+        return false
     }
 
-    fiveDown(player: Player) {
+    fiveDown(player: Player, squareIds: number[][]): boolean {
         const number = this.grid.rows.length
-        const array = player.squaresDeclared;
-        let squareIds: number[][] = []
-        array.forEach((square) => {
-            squareIds.push([square.id, square.rowId])
-        })
-        for (let idx = 0; idx < array.length; idx++) {
+        for (let idx = 0; idx < squareIds.length; idx++) {
             if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && app.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && app.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && app.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
                 return true
             }
         }
+        return false
     }
 
-    diagLeft(player: Player) {
+    diagLeft(player: Player, squareIds: number[][]): boolean {
         const number = this.grid.rows.length - 1
-        const array = player.squaresDeclared;
-        let squareIds: number[][] = []
-        array.forEach((square) => {
-            squareIds.push([square.id, square.rowId])
-        })
-        for (let idx = 0; idx < array.length; idx++) {
+        for (let idx = 0; idx < squareIds.length; idx++) {
             if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && app.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && app.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && app.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
                 return true
             }
         }
+        return false
     }
 
-    diagRight(player: Player) {
+    diagRight(player: Player, squareIds: number[][]): boolean {
         const number = this.grid.rows.length + 1
-        const array = player.squaresDeclared;
-        let squareIds: number[][] = []
-        array.forEach((square) => {
-            squareIds.push([square.id, square.rowId])
-        })
-        for (let idx = 0; idx < array.length; idx++) {
+        for (let idx = 0; idx < squareIds.length; idx++) {
             if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && app.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && app.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && app.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
                 return true
             }
         }
+        return false
     }
 }
 
