@@ -7,7 +7,6 @@ const row_1 = __importDefault(require("./row"));
 class Grid {
     constructor(rowNumber, squareNumberPerRow) {
         var _a;
-        this.selectedSquares = [];
         this.rows = Array.from({ length: rowNumber }).map((_, index) => {
             return new row_1.default(index, squareNumberPerRow);
         });

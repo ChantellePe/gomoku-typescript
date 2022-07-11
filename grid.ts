@@ -7,7 +7,6 @@ import Row from './row'
 
 export default class Grid {
     rows: Row[]
-    selectedSquares: number[] = []
     element: HTMLDivElement
 
 
@@ -29,6 +28,9 @@ export default class Grid {
         document.getElementById('main')?.appendChild(element)
 
     }
+
+
+
 
 }
 

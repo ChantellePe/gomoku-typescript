@@ -50,23 +50,18 @@ class app {
     }
     playerTurn(square) {
         if (this.player1.isCurrentPlayer()) {
-            this.player1.squaresDeclared.push(square.id);
+            this.player1.squaresDeclared.push(square);
             square.element.classList.add('playerone');
-            if (!this.declareWinner()) {
-                this.nextPlayer();
-            }
         }
-        else {
+        else if (this.player2.isCurrentPlayer()) {
             square.element.classList.add('playertwo');
-            this.player2.squaresDeclared.push(square.id);
-            if (!this.declareWinner()) {
-                this.nextPlayer();
-            }
+            this.player2.squaresDeclared.push(square);
+        }
+        if (!this.declareWinner()) {
+            this.nextPlayer();
         }
     }
     nextPlayer() {
-        console.log(this.player1.squaresDeclared);
-        console.log(this.player2.squaresDeclared);
         if (this.player1.isCurrentPlayer()) {
             const text = "Player " + this.player2.playerId + 's turn';
             this.player1.isTurn = false;
@@ -127,13 +122,18 @@ class app {
             this.displayWinner("Player 1 WINS!");
             return true;
         }
-        return false;
+    }
+    static exists(arr, search) {
+        return arr.some(row => JSON.stringify(row) === JSON.stringify(search));
     }
     fiveConseq(player) {
         const array = player.squaresDeclared;
+        let squareIds = [];
+        array.forEach((square) => {
+            squareIds.push([square.id, square.rowId]);
+        });
         for (let idx = 0; idx < array.length; idx++) {
-            if (array.includes(array[idx] + 1) && array.includes(array[idx] + 2) && array.includes(array[idx] + 3) && array.includes(array[idx] + 4)) {
-                //let newArray = [array[idx], array[idx] + 1, array[idx] + 2, array[idx] + 3, array[idx] + 4]
+            if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 1, squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 2, squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 3, squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + 4, squareIds[idx][1]])) {
                 return true;
             }
         }
@@ -141,9 +141,12 @@ class app {
     fiveDown(player) {
         const number = this.grid.rows.length;
         const array = player.squaresDeclared;
+        let squareIds = [];
+        array.forEach((square) => {
+            squareIds.push([square.id, square.rowId]);
+        });
         for (let idx = 0; idx < array.length; idx++) {
-            if (array.includes(array[idx] + number) && array.includes(array[idx] + (number * 2)) && array.includes(array[idx] + (number * 3)) && array.includes(array[idx] + (number * 4))) {
-                console.log('Down 5');
+            if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && app.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && app.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && app.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
                 return true;
             }
         }
@@ -151,9 +154,12 @@ class app {
     diagLeft(player) {
         const number = this.grid.rows.length - 1;
         const array = player.squaresDeclared;
+        let squareIds = [];
+        array.forEach((square) => {
+            squareIds.push([square.id, square.rowId]);
+        });
         for (let idx = 0; idx < array.length; idx++) {
-            if (array.includes(array[idx] + number) && array.includes(array[idx] + (number * 2)) && array.includes(array[idx] + (number * 3)) && array.includes(array[idx] + (number * 4))) {
-                console.log('diagLeft 5');
+            if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && app.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && app.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && app.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
                 return true;
             }
         }
@@ -161,9 +167,12 @@ class app {
     diagRight(player) {
         const number = this.grid.rows.length + 1;
         const array = player.squaresDeclared;
+        let squareIds = [];
+        array.forEach((square) => {
+            squareIds.push([square.id, square.rowId]);
+        });
         for (let idx = 0; idx < array.length; idx++) {
-            if (array.includes(array[idx] + number) && array.includes(array[idx] + (number * 2)) && array.includes(array[idx] + (number * 3)) && array.includes(array[idx] + (number * 4))) {
-                console.log('diagRight 5');
+            if (app.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && app.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && app.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && app.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && app.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
                 return true;
             }
         }

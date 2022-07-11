@@ -15,11 +15,13 @@ export default class Square {
     id: number
     status: STATUS
     element: HTMLDivElement
+    rowId: number
 
 
 
-    constructor(id: number, isOccupied: boolean = false) {
+    constructor(id: number, rowId: number, isOccupied: boolean = false) {
         this.id = id
+        this.rowId = rowId
         this.status = STATUS.AVAILABLE
         this.element = document.createElement('div')
         this.element.classList.add('square')
@@ -36,6 +38,7 @@ export default class Square {
         this.element.classList.add('occupied');
 
     }
+
 
 
 

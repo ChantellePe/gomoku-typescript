@@ -9,7 +9,7 @@ export default class Row {
         this.id = id
         this.squares = Array.from({ length: squareNumber }).map((_, index) => {
             const squareID: number = squareNumber * id + index
-            return new Square(squareID, false)
+            return new Square(squareID, this.id, false)
         })
         this.element = document.createElement('div')
         this.element.classList.add('row')
@@ -19,4 +19,7 @@ export default class Row {
     get selectedSquaresId() {
         return this.squares.filter((squares) => squares.isSelected).map((squares) => squares.id)
     }
+
+
+
 }

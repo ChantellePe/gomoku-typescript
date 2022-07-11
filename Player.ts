@@ -4,7 +4,7 @@ import Square from './Square'
 export default class Player {
     playerId: number
     isTurn: Boolean
-    squaresDeclared: number[];
+    squaresDeclared: Square[];
 
 
 

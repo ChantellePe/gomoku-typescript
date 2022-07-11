@@ -9,7 +9,7 @@ class Row {
         this.id = id;
         this.squares = Array.from({ length: squareNumber }).map((_, index) => {
             const squareID = squareNumber * id + index;
-            return new Square_1.default(squareID, false);
+            return new Square_1.default(squareID, this.id, false);
         });
         this.element = document.createElement('div');
         this.element.classList.add('row');

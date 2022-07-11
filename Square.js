@@ -7,8 +7,9 @@ var STATUS;
     STATUS["SELECTED"] = "SELECTED";
 })(STATUS || (STATUS = {}));
 class Square {
-    constructor(id, isOccupied = false) {
+    constructor(id, rowId, isOccupied = false) {
         this.id = id;
+        this.rowId = rowId;
         this.status = STATUS.AVAILABLE;
         this.element = document.createElement('div');
         this.element.classList.add('square');
