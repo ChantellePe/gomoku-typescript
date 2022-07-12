@@ -23,5 +23,4 @@ class Square {
         this.element.classList.add('occupied');
     }
 }
-
 exports.default = Square;

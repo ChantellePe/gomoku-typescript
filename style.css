@@ -2,6 +2,12 @@ body {
     background-image: url('Images/scrapbook-paper-1187898.jpg');
 }
 
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 #header {
     color: rgb(34, 0, 26);
     text-align: center;
@@ -21,7 +27,8 @@ body {
         1px 30px 60px rgba(16, 16, 16, 0.4);
 }
 
-#playerTurn {
+#playerTurn,
+#welcomeMessage {
     color: rgb(250, 229, 250);
     font-size: 2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -32,6 +39,34 @@ body {
     background-color: rgba(201, 118, 194, 0.63);
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+#playerTurn.player2Header {
+    color: rgb(34, 34, 34);
+    background-color: rgba(255, 255, 255, 0.63);
+    text-shadow: 1px 1px 1px #919191,
+        1px 2px 1px #919191,
+        1px 3px 1px #919191,
+        1px 4px 1px #919191,
+        1px 5px 1px #919191,
+        1px 6px 1px #919191,
+        1px 22px 10px rgba(16, 16, 16, 0.2),
+        1px 22px 10px rgba(16, 16, 16, 0.2),
+        1px 25px 35px rgba(16, 16, 16, 0.2),
+        1px 30px 60px rgba(16, 16, 16, 0.4);
+}
+
+#playerTurn.winner {
+    font-size: 5rem;
+    position: absolute;
+    padding-bottom: 50px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 200px;
+    width: 750px;
+    background-color: rgb(216, 79, 124, 0.75);
 }
 
 .square {
@@ -81,36 +116,22 @@ body {
     background-color: rgba(22, 22, 22, 0.63);
 }
 
-#playerTurn.player2Header {
-    color: rgb(34, 34, 34);
-    background-color: rgba(255, 255, 255, 0.63);
-    text-shadow: 1px 1px 1px #919191,
-        1px 2px 1px #919191,
-        1px 3px 1px #919191,
-        1px 4px 1px #919191,
-        1px 5px 1px #919191,
-        1px 6px 1px #919191,
-        1px 22px 10px rgba(16, 16, 16, 0.2),
-        1px 22px 10px rgba(16, 16, 16, 0.2),
-        1px 25px 35px rgba(16, 16, 16, 0.2),
-        1px 30px 60px rgba(16, 16, 16, 0.4);
+.button {
+    width: 180px;
+    height: 70px;
+    font-size: 24px;
+    font-weight: bolder;
 }
 
-#playerTurn.winner {
-    font-size: 5rem;
-    position: absolute;
-    padding-bottom: 50px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    top: 200px;
-    width: 600px;
-    background-color: rgb(216, 79, 124, 0.75);
+.reset {
+    width: 120px;
+    height: 48px;
+    font-size: 16px;
 }
 
 /* Button CSS by Sqaureshoot*/
-.reset {
+.reset,
+.button {
     pointer-events: all;
     align-items: center;
     background-color: rgb(216, 79, 124);
@@ -121,45 +142,32 @@ body {
     cursor: pointer;
     display: flex;
     font-family: Inter, sans-serif;
-    font-size: 16px;
-    height: 48px;
     justify-content: center;
     line-height: 24px;
     max-width: 100%;
     padding: 0 25px;
-    position: relative;
     text-align: center;
     text-decoration: none;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
     margin-top: 40px;
+    flex-direction: column;
 }
 
-.reset:after {
-    background-color: #111;
-    border-radius: 8px;
-    content: "";
-    display: block;
-    height: 48px;
-    left: 0;
-    width: 100%;
-    position: absolute;
-    top: -2px;
-    transform: translate(8px, 8px);
-    transition: transform .2s ease-out;
-    z-index: -1;
-}
 
-.reset:hover:after {
+.reset:hover:after,
+.button:hover:after {
     transform: translate(0, 0);
 }
 
-.reset:active {
+.reset:active,
+.button:active {
     background-color: #ffdeda;
     outline: 0;
 }
 
-.reset:hover {
+.reset:hover,
+.button.hover {
     outline: 0;
 }

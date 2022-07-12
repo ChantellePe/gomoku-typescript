@@ -15,7 +15,8 @@ class Grid {
         this.element.append(...this.rows.map((row) => row.element));
         const element = document.createElement('div');
         element.setAttribute('id', 'playerTurn');
-        const textNode = document.createTextNode("Welcome to Gomoku! It's Player 1's turn");
+        const textNode = document.createTextNode("It's Player 1's turn");
+        element.classList.add("player1Header");
         element.appendChild(textNode);
         (_a = document.getElementById('header')) === null || _a === void 0 ? void 0 : _a.appendChild(element);
     }
