@@ -16,19 +16,19 @@ export default class app {
         this.player2 = player2
 
 
-        const reset = document.createElement('button');
-        reset.setAttribute('id', 'newGame');
-        reset.classList.add('reset');
+        const reset = document.createElement('button')
+        reset.setAttribute('id', 'newGame')
+        reset.classList.add('reset')
         reset.innerHTML = "Reset"
-        this.grid.element?.appendChild(reset);
+        this.grid.element?.appendChild(reset)
         reset.addEventListener('click', () => {
-            this.clearGrid();
+            this.clearGrid()
 
         })
         this.grid.rows.forEach(row => {
             row.squares.forEach(square => {
                 square.element.addEventListener('click', () => {
-                    this.playerTurn(square);
+                    this.playerTurn(square)
 
                 })
             })
@@ -39,20 +39,20 @@ export default class app {
 
     clearGrid(): void {
         this.grid.element.classList.remove('gameOver')
-        this.player1.squaresDeclared = [];
-        this.player2.squaresDeclared = [];
+        this.player1.squaresDeclared = []
+        this.player2.squaresDeclared = []
         document.getElementById('playerTurn')?.remove()
-        const textNode = document.createTextNode("Welcome to Gomoku! It's Player 1's turn");
+        const textNode = document.createTextNode("Welcome to Gomoku! It's Player 1's turn")
         const element = document.createElement('div')
-        element.setAttribute('id', 'playerTurn');
+        element.setAttribute('id', 'playerTurn')
         element.appendChild(textNode)
         document.getElementById('header')?.appendChild(element)
         this.player1.isTurn = true
         this.player2.isTurn = false
         this.grid.rows.forEach(row => {
             row.squares.forEach(square => {
-                square.element.classList.remove('occupied', 'playerone', 'playertwo');
-                square.element.classList.add('available');
+                square.element.classList.remove('occupied', 'playerone', 'playertwo')
+                square.element.classList.add('available')
 
             })
 
@@ -66,12 +66,12 @@ export default class app {
             square.element.classList.add('playerone')
 
         } else if (this.player2.isCurrentPlayer()) {
-            square.element.classList.add('playertwo');
+            square.element.classList.add('playertwo')
             this.player2.squaresDeclared.push(square)
 
         }
         if (!this.declareWinner()) {
-            this.nextPlayer();
+            this.nextPlayer()
         }
     }
 
@@ -79,16 +79,16 @@ export default class app {
     nextPlayer(): void {
         if (this.player1.isCurrentPlayer()) {
             const text = "Player " + this.player2.playerId + 's turn';
-            this.player1.isTurn = false;
-            this.player2.isTurn = true;
-            this.player2.displayCurrentPlayer();
+            this.player1.isTurn = false
+            this.player2.isTurn = true
+            this.player2.displayCurrentPlayer()
             document.getElementById("playerTurn")?.classList.remove("player1Header")
             document.getElementById("playerTurn")?.classList.add("player2Header")
         } else {
-            const text = "Player " + this.player1.playerId + 's turn';
-            this.player2.isTurn = false;
-            this.player1.isTurn = true;
-            this.player1.displayCurrentPlayer();
+            const text = "Player " + this.player1.playerId + 's turn'
+            this.player2.isTurn = false
+            this.player1.isTurn = true
+            this.player1.displayCurrentPlayer()
             document.getElementById("playerTurn")?.classList.remove("player2Header")
             document.getElementById("playerTurn")?.classList.add("player1Header")
         }
@@ -98,43 +98,44 @@ export default class app {
         document.getElementById('playerTurn')?.remove()
         const element = document.createElement('div')
         element.setAttribute('id', 'playerTurn')
+        element.classList.add('winner')
         const textNode = document.createTextNode(message);
-        element.appendChild(textNode);
+        element.appendChild(textNode)
         document.getElementById("header")?.appendChild(element)
         this.grid.element.classList.add('gameOver')
     }
 
     declareWinner(): boolean {
         if (this.player1.squaresDeclared.length + this.player2.squaresDeclared.length === this.grid.rows.length ** 2) {
-            this.displayWinner("Its a TIE!");
-            return true;
+            this.displayWinner("Its a TIE!")
+            return true
         } else {
             const p1Array: number[][] = this.create2dArray(this.player1)
             const p2Array: number[][] = this.create2dArray(this.player2)
             if (this.fiveConseq(this.player1, p1Array)) {
-                this.displayWinner("Player 1 WINS!");
-                return true;
+                this.displayWinner("Player 1 WINS!")
+                return true
             } else if (this.fiveConseq(this.player2, p2Array)) {
-                this.displayWinner("Player 2 WINS!");
-                return true;
+                this.displayWinner("Player 2 WINS!")
+                return true
             } else if (this.fiveDown(this.player2, p2Array)) {
-                this.displayWinner("Player 2 WINS!");
-                return true;
+                this.displayWinner("Player 2 WINS!")
+                return true
             } else if (this.fiveDown(this.player1, p1Array)) {
-                this.displayWinner("Player 1 WINS!");
-                return true;
+                this.displayWinner("Player 1 WINS!")
+                return true
             } else if (this.diagLeft(this.player2, p2Array)) {
-                this.displayWinner("Player 2 WINS!");
-                return true;
+                this.displayWinner("Player 2 WINS!")
+                return true
             } else if (this.diagLeft(this.player1, p1Array)) {
-                this.displayWinner("Player 1 WINS!");
-                return true;
+                this.displayWinner("Player 1 WINS!")
+                return true
             } else if (this.diagRight(this.player2, p2Array)) {
-                this.displayWinner("Player 2 WINS!");
-                return true;
+                this.displayWinner("Player 2 WINS!")
+                return true
             } else if (this.diagRight(this.player1, p1Array)) {
-                this.displayWinner("Player 1 WINS!");
-                return true;
+                this.displayWinner("Player 1 WINS!")
+                return true
             }
 
         }
@@ -142,11 +143,11 @@ export default class app {
     }
 
     static exists(arr: number[][], search: number[]): boolean {
-        return arr.some(row => JSON.stringify(row) === JSON.stringify(search));
+        return arr.some(row => JSON.stringify(row) === JSON.stringify(search))
     }
 
     create2dArray(player: Player): number[][] {
-        const array = player.squaresDeclared;
+        const array = player.squaresDeclared
         let squareIds: number[][] = []
         array.forEach((square) => {
             squareIds.push([square.id, square.rowId])
@@ -196,9 +197,8 @@ export default class app {
 }
 
 
-
-const grid1 = new Grid(15, 15)
-export const playerone = new Player(1, true);
-export const playertwo = new Player(2);
-const newGame = new app(grid1, playerone, playertwo)
-document.getElementById("main")?.appendChild(grid1.element)
+const grid = new Grid(15, 15)
+export const playerone = new Player(1, true)
+export const playertwo = new Player(2)
+const newGame = new app(grid, playerone, playertwo)
+document.getElementById("main")?.appendChild(grid.element)

@@ -85,6 +85,7 @@ class app {
         (_a = document.getElementById('playerTurn')) === null || _a === void 0 ? void 0 : _a.remove();
         const element = document.createElement('div');
         element.setAttribute('id', 'playerTurn');
+        element.classList.add('winner');
         const textNode = document.createTextNode(message);
         element.appendChild(textNode);
         (_b = document.getElementById("header")) === null || _b === void 0 ? void 0 : _b.appendChild(element);
@@ -181,8 +182,8 @@ class app {
     }
 }
 exports.default = app;
-const grid1 = new grid_1.default(15, 15);
+const grid = new grid_1.default(15, 15);
 exports.playerone = new Player_1.default(1, true);
 exports.playertwo = new Player_1.default(2);
-const newGame = new app(grid1, exports.playerone, exports.playertwo);
-(_a = document.getElementById("main")) === null || _a === void 0 ? void 0 : _a.appendChild(grid1.element);
+const newGame = new app(grid, exports.playerone, exports.playertwo);
+(_a = document.getElementById("main")) === null || _a === void 0 ? void 0 : _a.appendChild(grid.element);

@@ -1,9 +1,3 @@
-
-import Player from './Player'
-import App from './app'
-
-
-
 enum STATUS {
     AVAILABLE = 'AVAILABLE',
     OCCUPIED = 'OCCUPIED',
@@ -17,8 +11,6 @@ export default class Square {
     element: HTMLDivElement
     rowId: number
 
-
-
     constructor(id: number, rowId: number, isOccupied: boolean = false) {
         this.id = id
         this.rowId = rowId
@@ -27,24 +19,14 @@ export default class Square {
         this.element.classList.add('square')
         this.element.classList.add('available')
         this.element.addEventListener('click', () => {
-            this.handleClick();
+            this.handleClick()
 
         })
-
     }
 
     handleClick() {
-        this.element.classList.remove('available');
-        this.element.classList.add('occupied');
-
-    }
-
-
-
-
-
-    get isSelected(): boolean {
-        return this.status === STATUS.SELECTED
+        this.element.classList.remove('available')
+        this.element.classList.add('occupied')
     }
 
 }

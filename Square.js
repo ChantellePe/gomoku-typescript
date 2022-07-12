@@ -22,8 +22,5 @@ class Square {
         this.element.classList.remove('available');
         this.element.classList.add('occupied');
     }
-    get isSelected() {
-        return this.status === STATUS.SELECTED;
-    }
 }
 exports.default = Square;

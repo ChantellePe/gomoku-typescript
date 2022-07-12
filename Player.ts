@@ -4,7 +4,7 @@ import Square from './Square'
 export default class Player {
     playerId: number
     isTurn: Boolean
-    squaresDeclared: Square[];
+    squaresDeclared: Square[]
 
 
 
@@ -18,9 +18,9 @@ export default class Player {
 
     isCurrentPlayer(): boolean {
         if (this.isTurn === true) {
-            return true;
+            return true
         }
-        return false;
+        return false
 
 
     }
@@ -28,8 +28,8 @@ export default class Player {
         document.getElementById('playerTurn')?.remove()
         const element = document.createElement('div')
         element.setAttribute('id', 'playerTurn')
-        const textNode = document.createTextNode("Now it's Player " + this.playerId + "\'s turn");
-        element.appendChild(textNode);
+        const textNode = document.createTextNode("Now it's Player " + this.playerId + "\'s turn")
+        element.appendChild(textNode)
         document.getElementById("header")?.appendChild(element)
 
     }

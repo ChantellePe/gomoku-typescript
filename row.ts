@@ -15,5 +15,4 @@ export default class Row {
         this.element.classList.add('row')
         this.element.append(...this.squares.map((square) => square.element))
     }
-
 }

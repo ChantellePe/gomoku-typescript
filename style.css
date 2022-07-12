@@ -32,8 +32,6 @@ body {
     background-color: rgba(201, 118, 194, 0.63);
     margin-bottom: 20px;
     margin-top: 20px;
-
-
 }
 
 .square {
@@ -44,14 +42,12 @@ body {
     cursor: pointer;
 }
 
-
-
 .playerone {
     background-color: black;
 }
 
 .playertwo {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 
 .square.available {
@@ -74,10 +70,10 @@ body {
 }
 
 .grid {
+    padding-top: 25px;
     display: flex;
     align-items: center;
     flex-direction: column;
-
 }
 
 #playerTurn.player1Header {
@@ -100,14 +96,71 @@ body {
         1px 30px 60px rgba(16, 16, 16, 0.4);
 }
 
+#playerTurn.winner {
+    font-size: 5rem;
+    position: absolute;
+    padding-bottom: 50px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 200px;
+    width: 600px;
+    background-color: rgb(216, 79, 124, 0.75);
+}
 
+/* Button CSS by Sqaureshoot*/
 .reset {
     pointer-events: all;
-    margin-top: 20px;
-    width: 60px;
-    color: black;
-    text-decoration: bolder;
-    display: inline-flex;
+    align-items: center;
+    background-color: rgb(216, 79, 124);
+    border: 2px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    font-family: Inter, sans-serif;
     font-size: 16px;
-    flex-direction: row;
+    height: 48px;
+    justify-content: center;
+    line-height: 24px;
+    max-width: 100%;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: 40px;
+}
+
+
+.reset:after {
+    background-color: #111;
+    border-radius: 8px;
+    content: "";
+    display: block;
+    height: 48px;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    top: -2px;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+    z-index: -1;
+}
+
+.reset:hover:after {
+    transform: translate(0, 0);
+}
+
+.reset:active {
+    background-color: #ffdeda;
+    outline: 0;
+}
+
+.reset:hover {
+    outline: 0;
 }

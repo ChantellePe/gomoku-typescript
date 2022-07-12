@@ -2,13 +2,9 @@ import Player from './Player'
 import Row from './row'
 
 
-
-
-
 export default class Grid {
     rows: Row[]
     element: HTMLDivElement
-
 
     constructor(
         rowNumber: number,
@@ -23,17 +19,10 @@ export default class Grid {
 
 
         const element = document.createElement('div')
-        element.setAttribute('id', 'playerTurn');
-        const textNode = document.createTextNode("Welcome to Gomoku! It's Player 1's turn");
+        element.setAttribute('id', 'playerTurn')
+        const textNode = document.createTextNode("Welcome to Gomoku! It's Player 1's turn")
         element.appendChild(textNode)
         document.getElementById('header')?.appendChild(element)
 
     }
-
-
-
-
 }
-
-
-
