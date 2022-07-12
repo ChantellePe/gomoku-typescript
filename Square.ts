@@ -4,7 +4,6 @@ enum STATUS {
     SELECTED = 'SELECTED',
 }
 
-
 export default class Square {
     id: number
     status: STATUS
@@ -20,7 +19,6 @@ export default class Square {
         this.element.classList.add('available')
         this.element.addEventListener('click', () => {
             this.handleClick()
-
         })
     }
 
@@ -28,5 +26,4 @@ export default class Square {
         this.element.classList.remove('available')
         this.element.classList.add('occupied')
     }
-
 }

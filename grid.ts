@@ -1,4 +1,3 @@
-import Player from './Player'
 import Row from './row'
 
 
@@ -17,12 +16,10 @@ export default class Grid {
         this.element.classList.add('grid')
         this.element.append(...this.rows.map((row) => row.element))
 
-
         const element = document.createElement('div')
         element.setAttribute('id', 'playerTurn')
         const textNode = document.createTextNode("Welcome to Gomoku! It's Player 1's turn")
         element.appendChild(textNode)
         document.getElementById('header')?.appendChild(element)
-
     }
 }

@@ -3,7 +3,6 @@ import Grid from './grid'
 import Square from './Square'
 
 
-
 export default class app {
     grid: Grid
     player1: Player
@@ -35,7 +34,6 @@ export default class app {
         })
 
     }
-
 
     clearGrid(): void {
         this.grid.element.classList.remove('gameOver')
