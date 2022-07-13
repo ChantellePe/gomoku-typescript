@@ -121,17 +121,27 @@ main {
     height: 70px;
     font-size: 24px;
     font-weight: bolder;
+    margin-top: 40px;
 }
 
 .reset {
     width: 120px;
     height: 48px;
     font-size: 16px;
+    margin-top: 30px;
+}
+
+.newGrid {
+    width: 240px;
+    height: 48px;
+    font-size: 16px;
+    margin-top: 15px;
 }
 
 /* Button CSS by Sqaureshoot*/
 .reset,
-.button {
+.button,
+.newGrid {
     pointer-events: all;
     align-items: center;
     background-color: rgb(216, 79, 124);
@@ -151,7 +161,6 @@ main {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    margin-top: 40px;
     flex-direction: column;
 }
 
