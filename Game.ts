@@ -1,5 +1,5 @@
 import Player from './Player'
-import Grid from './grid'
+import Grid from './Grid'
 import Square from './Square'
 
 

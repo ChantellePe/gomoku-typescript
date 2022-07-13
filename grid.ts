@@ -1,4 +1,4 @@
-import Row from './row'
+import Row from './Row'
 
 
 export default class Grid {

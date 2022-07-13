@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const row_1 = __importDefault(require("./row"));
+const row_1 = __importDefault(require("./Row"));
 class Grid {
     constructor(rowNumber, squareNumberPerRow) {
         var _a;

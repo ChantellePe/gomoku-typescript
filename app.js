@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Game_1 = __importDefault(require("./Game"));
 const Player_1 = __importDefault(require("./Player"));
-const grid_1 = __importDefault(require("./grid"));
+const Grid_1 = __importDefault(require("./Grid"));
 class app {
     constructor() {
         var _a, _b, _c, _d;
@@ -42,7 +42,7 @@ class app {
     createNewGrid(size) {
         var _a;
         this.hideButtonsAndBanner();
-        const grid = new grid_1.default(size, size);
+        const grid = new Grid_1.default(size, size);
         const playerone = new Player_1.default(1, true);
         const playertwo = new Player_1.default(2);
         const newGame = new Game_1.default(grid, playerone, playertwo);

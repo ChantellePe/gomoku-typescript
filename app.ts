@@ -1,6 +1,6 @@
 import Game from './Game'
 import Player from './Player'
-import Grid from './grid'
+import Grid from './Grid'
 
 class app {
 
