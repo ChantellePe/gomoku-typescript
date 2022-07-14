@@ -22,7 +22,7 @@ export default class Square {
         })
     }
 
-    handleClick() {
+    handleClick(): void {
         this.element.classList.remove('available')
         this.element.classList.add('occupied')
     }

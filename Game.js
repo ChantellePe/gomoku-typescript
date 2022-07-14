@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Game {
     constructor(grid, player1, player2) {
-        var _a;
+        var _a, _b;
         this.grid = grid;
         this.player1 = player1;
         this.player2 = player2;
@@ -13,6 +13,14 @@ class Game {
         (_a = this.grid.element) === null || _a === void 0 ? void 0 : _a.appendChild(reset);
         reset.addEventListener('click', () => {
             this.clearGrid();
+        });
+        const newGrid = document.createElement('button');
+        newGrid.setAttribute('id', 'newGrid');
+        newGrid.classList.add('newGrid');
+        newGrid.innerHTML = "Change grid size";
+        (_b = this.grid.element) === null || _b === void 0 ? void 0 : _b.appendChild(newGrid);
+        newGrid.addEventListener('click', () => {
+            location.reload();
         });
         this.grid.rows.forEach(row => {
             row.squares.forEach(square => {

@@ -1,19 +1,20 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const Square_1 = __importDefault(require("./Square"));
-class Row {
-    constructor(id, squareNumber, occupiedSquares = []) {
+exports.__esModule = true;
+var Square_1 = require("./Square");
+var Row = /** @class */ (function () {
+    function Row(id, squareNumber, occupiedSquares) {
+        var _a;
+        var _this = this;
+        if (occupiedSquares === void 0) { occupiedSquares = []; }
         this.id = id;
-        this.squares = Array.from({ length: squareNumber }).map((_, index) => {
-            const squareID = squareNumber * id + index;
-            return new Square_1.default(squareID, this.id, false);
+        this.squares = Array.from({ length: squareNumber }).map(function (_, index) {
+            var squareID = squareNumber * id + index;
+            return new Square_1["default"](squareID, _this.id, false);
         });
         this.element = document.createElement('div');
         this.element.classList.add('row');
-        this.element.append(...this.squares.map((square) => square.element));
+        (_a = this.element).append.apply(_a, this.squares.map(function (square) { return square.element; }));
     }
-}
-exports.default = Row;
+    return Row;
+}());
+exports["default"] = Row;

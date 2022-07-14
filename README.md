@@ -1,36 +1,23 @@
 # Assignment 1 COSC560 - Gomoku
 
-Gomoku is a game 
+Gomoku is a strategy board game which is also called Five in a Row. 
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+Players alternate turns placing a stone of their color on an empty intersection. Black plays first. The winner is the first player to form an unbroken chain of five stones horizontally, vertically, or diagonally. 
 
-## Getting Started
+## My Extra Bonus Feature
 
-### Dependencies
+There are a couple of features in my app that warrant the additonal 1 mark.
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+1) The player has the option of 3 grid sizes which they can change at any time by clicking on the 'Change Grid Size' button underneath the reset button
+2) The banner colour which indicates the current players turn, changes to match the colour of the player's square
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* Open a new terminal and type in
 ```
-code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
+yarn start
 ```
 
 ## Author

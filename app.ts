@@ -9,7 +9,7 @@ class app {
 
         const element = document.createElement('div')
         element.setAttribute('id', 'welcomeMessage')
-        const textNode = document.createTextNode("Welcome to Gomoku! Choose a grid size:")
+        const textNode = document.createTextNode("Choose a grid size:")
         element.appendChild(textNode)
         document.getElementById('header')?.appendChild(element)
 
@@ -42,7 +42,7 @@ class app {
 
     }
 
-    createNewGrid(size: number) {
+    createNewGrid(size: number): void {
         this.hideButtonsAndBanner()
         const grid = new Grid(size, size)
         const playerone = new Player(1, true)
@@ -53,7 +53,7 @@ class app {
 
     }
 
-    hideButtonsAndBanner() {
+    hideButtonsAndBanner(): void {
         const nineteenByNineteen = document.getElementById('19By19')
         const fifteenByFifteen = document.getElementById('15By15')
         const tenByTen = document.getElementById('10By10')

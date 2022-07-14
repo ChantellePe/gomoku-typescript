@@ -1,7 +1,6 @@
 import Player from './Player'
 import Grid from './Grid'
 import Square from './Square'
-import { resolveModuleName } from 'typescript'
 
 
 export default class Game {
@@ -26,7 +25,7 @@ export default class Game {
         const newGrid = document.createElement('button')
         newGrid.setAttribute('id', 'newGrid')
         newGrid.classList.add('newGrid')
-        newGrid.innerHTML = "Choose a new grid size"
+        newGrid.innerHTML = "Change grid size"
         this.grid.element?.appendChild(newGrid)
         newGrid.addEventListener('click', () => {
             location.reload()

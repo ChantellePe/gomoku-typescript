@@ -1,26 +1,29 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var STATUS;
 (function (STATUS) {
     STATUS["AVAILABLE"] = "AVAILABLE";
     STATUS["OCCUPIED"] = "OCCUPIED";
     STATUS["SELECTED"] = "SELECTED";
 })(STATUS || (STATUS = {}));
-class Square {
-    constructor(id, rowId, isOccupied = false) {
+var Square = /** @class */ (function () {
+    function Square(id, rowId, isOccupied) {
+        var _this = this;
+        if (isOccupied === void 0) { isOccupied = false; }
         this.id = id;
         this.rowId = rowId;
         this.status = STATUS.AVAILABLE;
         this.element = document.createElement('div');
         this.element.classList.add('square');
         this.element.classList.add('available');
-        this.element.addEventListener('click', () => {
-            this.handleClick();
+        this.element.addEventListener('click', function () {
+            _this.handleClick();
         });
     }
-    handleClick() {
+    Square.prototype.handleClick = function () {
         this.element.classList.remove('available');
         this.element.classList.add('occupied');
-    }
-}
-exports.default = Square;
+    };
+    return Square;
+}());
+exports["default"] = Square;

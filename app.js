@@ -11,7 +11,7 @@ class app {
         var _a, _b, _c, _d;
         const element = document.createElement('div');
         element.setAttribute('id', 'welcomeMessage');
-        const textNode = document.createTextNode("Welcome to Gomoku! Choose a grid size:");
+        const textNode = document.createTextNode("Choose a grid size:");
         element.appendChild(textNode);
         (_a = document.getElementById('header')) === null || _a === void 0 ? void 0 : _a.appendChild(element);
         const tenByTen = document.createElement('button');
