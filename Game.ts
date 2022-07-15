@@ -77,7 +77,6 @@ export default class Game {
         }
     }
 
-
     nextPlayer(): void {
         if (this.player1.isCurrentPlayer()) {
             const text = "Player " + this.player2.playerId + 's turn';
@@ -160,7 +159,10 @@ export default class Game {
     fiveConseq(player: Player, squareIds: number[][]): boolean {
         for (let idx = 0; idx < squareIds.length; idx++) {
             if (Game.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + 1, squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + 2, squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + 3, squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + 4, squareIds[idx][1]])) {
-                return true
+                if (!Game.exists(squareIds, [squareIds[idx][0] - 1, squareIds[idx][1]]) && !Game.exists(squareIds, [squareIds[idx][0] + 5, squareIds[idx][1]])) {
+                    return true
+                }
+
             }
         }
         return false
@@ -170,7 +172,9 @@ export default class Game {
         const number = this.grid.rows.length
         for (let idx = 0; idx < squareIds.length; idx++) {
             if (Game.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && Game.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && Game.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && Game.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
-                return true
+                if (!Game.exists(squareIds, [squareIds[idx][0] - number, squareIds[idx][1] - 1]) && !Game.exists(squareIds, [squareIds[idx][0] + (number * 5), squareIds[idx][1] + 5])) {
+                    return true
+                }
             }
         }
         return false
@@ -180,7 +184,9 @@ export default class Game {
         const number = this.grid.rows.length - 1
         for (let idx = 0; idx < squareIds.length; idx++) {
             if (Game.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && Game.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && Game.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && Game.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
-                return true
+                if (!Game.exists(squareIds, [squareIds[idx][0] - number, squareIds[idx][1] - 1]) && !Game.exists(squareIds, [squareIds[idx][0] + (number * 5), squareIds[idx][1] + 5])) {
+                    return true
+                }
             }
         }
         return false
@@ -190,10 +196,11 @@ export default class Game {
         const number = this.grid.rows.length + 1
         for (let idx = 0; idx < squareIds.length; idx++) {
             if (Game.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + number, squareIds[idx][1] + 1]) && Game.exists(squareIds, [squareIds[idx][0] + (number * 2), squareIds[idx][1] + 2]) && Game.exists(squareIds, [squareIds[idx][0] + (number * 3), squareIds[idx][1] + 3]) && Game.exists(squareIds, [squareIds[idx][0] + (number * 4), squareIds[idx][1] + 4])) {
-                return true
+                if (!Game.exists(squareIds, [squareIds[idx][0] - number, squareIds[idx][1] - 1]) && !Game.exists(squareIds, [squareIds[idx][0] + (number * 5), squareIds[idx][1] + 5])) {
+                    return true
+                }
             }
         }
         return false
     }
 }
-
