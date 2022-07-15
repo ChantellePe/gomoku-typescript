@@ -69,6 +69,11 @@ main {
     background-color: rgb(216, 79, 124, 0.75);
 }
 
+#playerTurn.player1Header {
+    color: rgb(255, 255, 255);
+    background-color: rgba(22, 22, 22, 0.63);
+}
+
 .square {
     height: 2rem;
     width: 2rem;
@@ -109,11 +114,6 @@ main {
     display: flex;
     align-items: center;
     flex-direction: column;
-}
-
-#playerTurn.player1Header {
-    color: rgb(255, 255, 255);
-    background-color: rgba(22, 22, 22, 0.63);
 }
 
 .button {

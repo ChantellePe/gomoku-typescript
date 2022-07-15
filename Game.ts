@@ -143,9 +143,12 @@ export default class Game {
         return false
     }
 
+    //Winner helper functions
+
     static exists(arr: number[][], search: number[]): boolean {
         return arr.some(row => JSON.stringify(row) === JSON.stringify(search))
     }
+
 
     create2dArray(player: Player): number[][] {
         const array = player.squaresDeclared
@@ -156,6 +159,9 @@ export default class Game {
         return squareIds
     }
 
+    //5 in a row functions 
+
+    //Horizontal
     fiveConseq(player: Player, squareIds: number[][]): boolean {
         for (let idx = 0; idx < squareIds.length; idx++) {
             if (Game.exists(squareIds, [squareIds[idx][0], squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + 1, squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + 2, squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + 3, squareIds[idx][1]]) && Game.exists(squareIds, [squareIds[idx][0] + 4, squareIds[idx][1]])) {
@@ -168,6 +174,7 @@ export default class Game {
         return false
     }
 
+    //Vertical
     fiveDown(player: Player, squareIds: number[][]): boolean {
         const number = this.grid.rows.length
         for (let idx = 0; idx < squareIds.length; idx++) {

@@ -6,13 +6,14 @@ class app {
 
     constructor() {
 
-
+        //Banner
         const element = document.createElement('div')
         element.setAttribute('id', 'welcomeMessage')
         const textNode = document.createTextNode("Choose a grid size:")
         element.appendChild(textNode)
         document.getElementById('header')?.appendChild(element)
 
+        //Grid Buttons
         const tenByTen = document.createElement('button')
         tenByTen.setAttribute('id', '10By10')
         tenByTen.classList.add('button')
@@ -39,7 +40,6 @@ class app {
         nineteenByNineteen.addEventListener('click', () => {
             this.createNewGrid(19)
         })
-
     }
 
     createNewGrid(size: number): void {
@@ -49,8 +49,6 @@ class app {
         const playertwo = new Player(2)
         const newGame = new Game(grid, playerone, playertwo)
         document.getElementById("main")?.appendChild(grid.element)
-
-
     }
 
     hideButtonsAndBanner(): void {
